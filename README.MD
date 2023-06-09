@@ -8,6 +8,7 @@
 例:
 
 ```rust
+// エラーが出るlargest関数
 fn largest<T>(list: &[T]) -> T {
     let mut largest = list[0];
 
@@ -21,6 +22,7 @@ fn largest<T>(list: &[T]) -> T {
     largest
 }
 
+// 正常に動くlargest関数
 // トレイト境界でジェネリックTがPartialOrd(半順序関係)+所有権がCopyであることを明記
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
