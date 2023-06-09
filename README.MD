@@ -4,6 +4,35 @@
 
 ## トレイト境界
 
+ジェネリック(T など)に特定の振る舞いをもつあらゆる型になり得ることを指定すること。<br>
+例:
+
+```rust
+fn largest<T>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        // 二進型は比較演算子を使えないためエラー
+        // エラーを回避するためにトレイト境界が必要
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+
+// トレイト境界でジェネリックTがPartialOrd(半順序関係)+所有権がCopyであることを明記
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+    for &item in list {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+```
+
 1. Eq(同値関係)<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は同値関係である。
 
