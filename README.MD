@@ -5,10 +5,11 @@
 ## 型
 
 - int 型<br>
-  $n=\set{8, 16, 32, 64, 128, i}$とする (i はコンピュータの数に依存)
+  型サイズの bit 数を$n=\set{8, 16, 32, 64, 128, i}$とする (i はコンピュータアーキテクチャに依存、32bit なら 32、64bit なら 64)
   - signed int 型(符号付き整数型) <br>$\set{ x | x \in \mathbb{Z} , -(2^{n-1}) \leqq x \leqq 2^{n-1}-1}$
   - unsigned int 型(符号なし整数型)<br>$\set{ x | x \in \mathbb{N} , 0 \leqq x \leqq 2^{n-1}-1}$
-- float 型(浮動小数点型)<br>$(n=\set{32, 64})$<br>$\set{ x | x \in \mathbb{R} \lor \set{NaN} , (f_{min} \leqq x \leqq f_{max}) \lor \set{NaN}}$
+- float 型(浮動小数点型)<br>型サイズの bit 数を$n=\set{32, 64}$<br>
+  $\set{ x | x \in \mathbb{R} \lor \set{NaN} , (f_{min} \leqq x \leqq f_{max}) \lor \set{NaN}}$
 - bool 型(論理値型)<br>$\set{ x | x=\set{0, 1}}$
 
 ## トレイト境界:
@@ -23,8 +24,8 @@ fn largest<T>(list: &[T]) -> T {
     let mut largest = list[0];
 
     for &item in list.iter() {
-        // 二進型は比較演算子を使えないためエラー
         // エラーを回避するためにトレイト境界が必要
+        // intとcharの場合、トレイト境界はOrd + Copyで十分
         if item > largest {
             largest = item;
         }
@@ -33,7 +34,7 @@ fn largest<T>(list: &[T]) -> T {
 }
 
 // 正常に動くlargest関数
-// トレイト境界でジェネリックTがPartialOrd(半順序関係)+所有権がCopyであることを明記
+// トレイト境界でジェネリックTがPartialOrd(狭義半順序関係)+所有権がCopyであることを明記
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
     for &item in list {
@@ -45,7 +46,7 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 }
 ```
 
-### トレイト境界の種類(真偽不明。間違っていたら情報をください):
+### トレイト境界の種類:自信ないよ(笑)。間違っていたら情報をください:
 
 1. Eq(同値関係)[^1]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は同値関係である。
@@ -54,7 +55,7 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
    - $\forall x, y \in A. (xRy \to yRx)$ (対称律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
 
-2. PartialEq(恐らく部分同値関係)[^2]<br>
+2. PartialEq(部分同値関係)[^2]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は部分同値関係である。
 
    - $\forall x, y \in A. (xRy \to yRx)$ (対称律)
@@ -66,7 +67,7 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
    - $\forall x, y \in A. (xRy \lor yRx \lor x=y)$ (三分律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
 
-4. PartialOrd(恐らく狭義半順序関係)[^4]<br>
+4. PartialOrd(狭義半順序関係)[^4]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は半順序関係である。
    - $\forall x, y \in A. (xRy \to \lnot yRx)$ (非対称律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
