@@ -2,6 +2,14 @@
 
 なんとなく分からなかったところをメモしていきます。
 
+## 型
+
+- int 型 $(n=\set{8, 16, 32, 64, 128, i})$ i はコンピュータの数に依存
+  - signed int 型(符号付き整数型) <br>$\set{ x | x \in \mathbb{Z} , -(2^{n-1}) \leqq x \leqq 2^{n-1}-1}$
+  - unsigned int 型(符号なし整数型)<br>$\set{ x | x \in \mathbb{N} , 0 \leqq x \leqq 2^{n-1}-1}$
+- float 型(浮動小数点型)<br>$(n=\set{32, 64})$<br>$\set{ x | x \in \mathbb{R} \land \set{NaN} , (f_{min} \leqq x \leqq f_{max}) \lor \set{NaN}}$
+- bool 型(論理値型)<br>$\set{ x | x=\set{0, 1}}$
+
 ## トレイト境界:
 
 ジェネリック(T など)に特定の振る舞いをもつあらゆる型になり得ることを指定すること。<br>
