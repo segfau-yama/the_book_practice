@@ -8,7 +8,7 @@
   型サイズの bit 数を $n=\set{8, 16, 32, 64, 128, i}$ とする (i はコンピュータアーキテクチャに依存、32bit なら 32、64bit なら 64)
   - signed int 型(符号付き整数型) <br>$\set{ x | x \in \mathbb{Z} , -(2^{n-1}) \leqq x \leqq 2^{n-1}-1}$
   - unsigned int 型(符号なし整数型)<br>$\set{ x | x \in \mathbb{N} , 0 \leqq x \leqq 2^{n-1}-1}$
-- float 型(浮動小数点型)<br>型サイズの bit 数を$n=\set{32, 64}$<br>
+- float 型(浮動小数点型)<br>型サイズの bit 数を $n=\set{32, 64}$ とする<br>
   $\set{ x | x \in \mathbb{R} \lor \set{NaN} , (f_{min} \leqq x \leqq f_{max}) \lor \set{NaN}}$
 - bool 型(論理値型)<br>$\set{ x | x=\set{0, 1}}$
 
