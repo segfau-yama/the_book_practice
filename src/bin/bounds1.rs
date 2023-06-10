@@ -16,8 +16,11 @@ fn main() {
     let result = largest(&number_list);
     println!("The largest number is {}", result);
 
-    let char_list = vec!['y', 'm', 'a', 'q'];
+    let number_list = vec![0.33, 0.55, 2.5, 0.6547, 3.21];
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
 
+    let char_list = vec!['y', 'm', 'a', 'q'];
     let result = largest(&char_list);
     println!("The largest char is {}", result);
 }
