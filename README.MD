@@ -38,28 +38,31 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 
 ### トレイト境界の種類(真偽不明。間違っていたら情報をください):
 
-1. Eq(同値関係)<br>
+1. Eq(同値関係)[^1]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は同値関係である。
 
    - $\forall x \in A. xRx$ (反射律)
    - $\forall x, y \in A. (xRy \to yRx)$ (対称律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
 
-2. PartialEq(恐らく部分同値関係)<br>
+2. PartialEq(恐らく部分同値関係)[^2]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は部分同値関係である。
 
    - $\forall x, y \in A. (xRy \to yRx)$ (対称律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
 
-3. Ord(全順序関係)<br>
+3. Ord(狭義全順序関係)[^3]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は全順序関係である。
 
-   - $\forall x, y \in A. (xRy \lor yRx)$ (完全律)
-   - $\forall x, y \in A. (xRy \to yRx)$ (対称律)
-   - $\forall x, y \in A. (xRy \land yRx \to x=y)$ (反対称律)
+   - $\forall x, y \in A. (xRy \lor yRx \lor x=y)$ (三分律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
 
-4. PartialOrd(恐らく狭義半順序関係)<br>
+4. PartialOrd(恐らく狭義半順序関係)[^4]<br>
    集合 $A$ 上の二項関係 $R$ について、以下の命題が全部真であるとき、関係 $R$ は半順序関係である。
    - $\forall x, y \in A. (xRy \to \lnot yRx)$ (非対称律)
    - $\forall x, y, z \in A. (xRy \land yRz \to xRz)$ (推移律)
+
+[^1]: https://doc.rust-lang.org/std/cmp/trait.Eq.html
+[^2]: https://en.wikipedia.org/wiki/Partial_equivalence_relation
+[^3]: https://ja.wikipedia.org/wiki/%E5%85%A8%E9%A0%86%E5%BA%8F
+[^4]: https://en.wikipedia.org/wiki/Partial_equivalence_relation
