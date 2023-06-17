@@ -2,7 +2,7 @@ fn largest<T>(list: &[T]) -> T {
     let mut largest = list[0];
 
     for &item in list.iter() {
-        // 二進型は比較演算子を使えないためエラー
+        // 不等号の入っている集合であることを定義してない
         // エラーを回避するためにトレイト境界が必要
         if item > largest {
             largest = item;

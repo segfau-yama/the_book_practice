@@ -1,10 +1,10 @@
 // トレイト境界はT型に何らかの型が代入された際の制約
-// PartialOrd: 半順序集合(反射律、推移律、反対称律を満たす)
+// PartialOrd: 狭義半順序集合
 // Copy: 所有権がコピーである
-fn largest<T: PartialEq + Copy>(list: &[T]) -> T {
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
     for &item in list {
-        if item == largest {
+        if item < largest {
             largest = item;
         }
     }
